@@ -13,7 +13,6 @@ export default function Page() {
       <Hero />
       <About />
       <Skills />
-      <Certifications />
       <Projects />
       <Contact />
       <Footer />
