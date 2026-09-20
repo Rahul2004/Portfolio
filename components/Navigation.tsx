@@ -30,15 +30,15 @@ export default function Navigation() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-24 py-5 transition-all duration-300 ${
-        scrolled ? 'bg-paper/90 backdrop-blur-sm border-b-2 border-ink shadow-[4px_4px_0px_#111]' : 'bg-transparent'
+        scrolled ? 'bg-[#F4F4F0]/90 backdrop-blur-sm border-b-2 border-neutral-900 shadow-[4px_4px_0px_#111]' : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl flex items-center justify-between">
-        <a href="#hero" className="font-serif text-xl md:text-2xl tracking-tight text-ink">
+        <a href="#hero" className="font-serif text-xl md:text-2xl tracking-tight text-neutral-900">
           Rahul Kumar
         </a>
         <div className="flex items-center gap-4 md:gap-8">
-          <div className="hidden md:flex items-center gap-8 text-sm tracking-wide text-ink">
+          <div className="hidden md:flex items-center gap-8 text-sm tracking-wide text-neutral-900">
             {links.map((l) => (
               <a key={l.href} href={l.href} className="hover:text-muted transition-colors">{l.label}</a>
             ))}
@@ -48,14 +48,14 @@ export default function Navigation() {
           </div>
           <button
             onClick={() => { setDark(!dark); document.documentElement.classList.toggle('dark'); }}
-            className="p-2 rounded-lg border-2 border-ink bg-paper hover:bg-ink hover:text-paper transition-all"
+            className="p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-ink hover:text-[#F4F4F0] transition-all"
             aria-label={dark ? 'Light mode' : 'Dark mode'}
           >
             {dark ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg border-2 border-ink bg-paper hover:bg-ink hover:text-paper transition-all"
+            className="md:hidden p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-ink hover:text-[#F4F4F0] transition-all"
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           >
             {mobileOpen ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
@@ -63,8 +63,8 @@ export default function Navigation() {
         </div>
       </div>
       {mobileOpen && (
-        <div className="md:hidden mt-4 py-4 border-t-2 border-ink bg-paper shadow-[4px_4px_0px_#111]">
-          <div className="flex flex-col gap-4 text-sm tracking-wide text-ink">
+        <div className="md:hidden mt-4 py-4 border-t-2 border-neutral-900 bg-[#F4F4F0] shadow-[4px_4px_0px_#111]">
+          <div className="flex flex-col gap-4 text-sm tracking-wide text-neutral-900">
             {links.map((l) => (
               <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="hover:text-muted transition-colors px-2 py-1">{l.label}</a>
             ))}

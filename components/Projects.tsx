@@ -5,6 +5,7 @@ const projects = [
     stack: 'Python · FastAPI · Docker · Terraform · Gemini AI',
     desc: 'Automated routing that reads and classifies customer support tickets using Gemini AI. Sends each to the right department. Backend: Python + FastAPI. Infra: Docker + Terraform.',
     link: 'https://github.com/Rahul2004/support-ticket-router',
+    demo: '#',
   },
   {
     title: 'Food Delivery Platform',
@@ -12,6 +13,7 @@ const projects = [
     stack: 'HTML5 · CSS3 · Vanilla JavaScript',
     desc: 'A clean dashboard for restaurant admins to manage food orders. Features real-time updates and interactive UI built entirely with plain HTML, CSS, and JavaScript.',
     link: 'https://github.com/Rahul2004/Food-delivery',
+    demo: 'https://quickbite-onnlinne.vercel.app',
   },
 ];
 export default function Projects() {
@@ -30,9 +32,10 @@ export default function Projects() {
                 <div>
                   <h4 className="font-serif text-2xl md:text-3xl text-neutral-900 tracking-tight mb-4">{p.title}</h4>
                   <p className="text-neutral-900 leading-relaxed text-base md:text-lg mb-6">{p.desc}</p>
-                  <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-neutral-900 text-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-medium tracking-wide">
-                    {p.link.replace('https://github.com/', 'github.com/')}
-                  </a>
+                  <div className="flex flex-wrap gap-3">
+                    <a href={p.demo} className="inline-flex items-center gap-2 border-2 border-neutral-900 bg-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:-translate-y-1 hover:shadow-[2px_2px_0px_#111] transition-all duration-200 font-bold tracking-wide text-neutral-900">Live Demo</a>
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-neutral-900 text-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-medium tracking-wide">GitHub</a>
+                  </div>
                 </div>
               </div>
             </article>
