@@ -26,4 +26,23 @@
 }
 
 html { scroll-behavior: smooth; }
-body { background-color: #F4F4F0; color: #171717; font-family: var(--font-sans); }
+
+/* Cross-browser consistency: box model, smoothing, typography */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #F4F4F0;
+  color: #171717;
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  /* Prevent layout shifts with stable viewport units */
+  min-height: 100dvh;
+}

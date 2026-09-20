@@ -6,6 +6,11 @@ export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [dark, setDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -14,12 +19,14 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
+    // Only run media query after mount to avoid SSR mismatch
+    if (!mounted) return;
     const media = window.matchMedia('(prefers-color-scheme: dark)');
     setDark(media.matches);
     const handler = (e: MediaQueryListEvent) => setDark(e.matches);
     media.addEventListener('change', handler);
     return () => media.removeEventListener('change', handler);
-  }, []);
+  }, [mounted]);
 
   const links = [
     { label: 'About', href: '#about' },

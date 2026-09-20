@@ -24,3 +24,16 @@ npm-debug.log*
 # agent logs
 .remember/
 .kilo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+Thumbs.db
+
+# temp files
+*.tmp
+*.temp
