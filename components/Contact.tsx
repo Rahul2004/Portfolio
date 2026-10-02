@@ -43,7 +43,9 @@ export default function Contact() {
 
   return (
     <section id="contact" className="bg-[#F4F4F0] border-b-2 border-neutral-900 px-6 md:px-12 lg:px-24 py-24 md:py-36">
-      <div className="max-w-lg mx-auto">
+      <div className="max-w-6xl border-2 border-neutral-900 bg-[#F4F4F0] p-8 md:p-12 shadow-[6px_6px_0px_#111] mb-16">
+        <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight text-neutral-900 leading-[1.05]">Contact</h2>
+        <div className="mt-4 w-16 h-1 bg-neutral-900" />
         <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-neutral-900 mb-12">Contact</h2>
         {submitted ? (
           <div className="border-2 border-neutral-900 bg-[#F4F4F0] p-8 shadow-[6px_6px_0px_#111] text-center">
@@ -55,7 +57,7 @@ export default function Contact() {
             >Send another message</button>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6 grid md:grid-cols-2 gap-6">
             {error && (
               <div className="border-2 border-neutral-900 bg-red-50 p-4 shadow-[4px_4px_0px_#dc2626]">
                 <p className="text-red-600 text-sm font-medium">{error}</p>
@@ -79,7 +81,7 @@ export default function Contact() {
               <label htmlFor="message" className="block text-xs uppercase tracking-[0.15em] font-bold text-neutral-900 mb-2">Message</label>
               <textarea
                 id="message" name="message" rows={4} required disabled={submitting}
-                className="w-full bg-transparent border-b-2 border-neutral-900 py-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-all duration-300 disabled:opacity-50 resize-none"
+                className="w-full bg-[#F4F4F0] border-2 border-neutral-900 p-3 text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-neutral-900 transition-all duration-300 disabled:opacity-50 resize-none"
                 placeholder="Say hello..." />
             </div>
             <button

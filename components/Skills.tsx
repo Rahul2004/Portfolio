@@ -15,10 +15,10 @@ export default function Skills() {
         <div className="grid md:grid-cols-3 gap-8 md:gap-10">
           {categories.map((cat) => (
             <div key={cat.title} className="border-2 border-neutral-900 bg-[#F4F4F0] p-6 md:p-8 shadow-[6px_6px_0px_#111] hover:-translate-y-1 hover:shadow-[4px_4px_0px_#111] transition-all duration-300 ease-in-out">
-              <h3 className="font-sans text-xs uppercase tracking-[0.2em] text-neutral-900 mb-5 font-bold">{cat.title}</h3>
+              <h3 className="font-sans text-sm font-bold text-neutral-900 mb-5 tracking-tight">{cat.title}</h3>
               <div className="flex flex-wrap gap-2">
                 {cat.items.map((item) => (
-                  <span key={item} className="border border-neutral-900 bg-[#F4F4F0] px-3 py-1 text-xs font-bold tracking-wide shadow-[3px_3px_0px_#111] hover:-translate-y-0.5 hover:shadow-[1px_1px_0px_#111] transition-all duration-300 ease-in-out">{item}</span>
+                  <span key={item} className="border border-neutral-900 bg-[#F4F4F0] px-3 py-1 text-xs font-bold tracking-wide">{item}</span>
                 ))}
               </div>
             </div>

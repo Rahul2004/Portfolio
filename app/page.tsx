@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 
 export default function Page() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen py-16 md:py-24">
       <Navigation />
       <Hero />
       <About />

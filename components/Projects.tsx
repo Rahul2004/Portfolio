@@ -1,3 +1,5 @@
+'use client';
+import { motion } from 'framer-motion';
 const projects = [
   {
     title: 'AI Support Ticket Router',
@@ -19,26 +21,28 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="bg-[#F4F4F0] border-b-2 border-neutral-900 px-6 md:px-12 lg:px-24 py-24 md:py-36">
-      <div className="max-w-6xl">
-        <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-neutral-900 mb-16 md:mb-24">Projects</h2>
+      <div className="max-w-6xl border-2 border-neutral-900 bg-[#F4F4F0] p-8 md:p-12 shadow-[6px_6px_0px_#111] mb-16">
+        <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl tracking-tight text-neutral-900 leading-[1.05]">Projects</h2>
+        <div className="mt-4 w-16 h-1 bg-neutral-900" />
         <div className="grid md:grid-cols-2 gap-8 md:gap-10 lg:gap-12">
           {projects.map((p) => (
-            <article key={p.title} className="border-2 border-neutral-900 bg-[#F4F4F0] p-6 md:p-8 shadow-[6px_6px_0px_#111] hover:-translate-y-1 hover:shadow-[8px_8px_0px_#111] transition-all duration-300 ease-out">
-              <div className="space-y-4">
+            <motion.article key={p.title} initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: 'easeOut' }} whileHover={{ y: -8, rotate: 0.5 }} className="border-2 border-neutral-900 bg-[#F4F4F0] p-6 md:p-8 shadow-[6px_6px_0px_#111] hover:-translate-y-1 hover:shadow-[8px_8px_0px_#111] transition-all duration-300 ease-out">
+              <div className="flex flex-col h-full space-y-4">
                 <div className="border-t-2 border-neutral-900 pt-4">
+                  <img src="https://placehold.co/600x340/111/ffffff?text=Project+Preview" alt={`${p.title} preview`} className="w-full h-48 object-cover border-2 border-neutral-900 shadow-[4px_4px_0px_#111] mb-4" loading="lazy" />
                   <h3 className="font-sans text-sm md:text-base font-medium text-neutral-900 tracking-tight">{p.subtitle}</h3>
                   <p className="mt-2 text-xs md:text-sm text-neutral-500">{p.stack}</p>
                 </div>
                 <div>
                   <h4 className="font-serif text-2xl md:text-3xl text-neutral-900 tracking-tight mb-4">{p.title}</h4>
                   <p className="text-neutral-900 leading-relaxed text-base md:text-lg mb-6">{p.desc}</p>
-                  <div className="flex flex-wrap gap-3">
-                    <a href={p.demo} className="inline-flex items-center gap-2 border-2 border-neutral-900 bg-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:-translate-y-1 hover:shadow-[2px_2px_0px_#111] transition-all duration-200 font-bold tracking-wide text-neutral-900">Live Demo</a>
-                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-neutral-900 text-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-medium tracking-wide">GitHub</a>
+                  <div className="flex flex-wrap gap-3 mt-auto pt-4">
+                    <a href={p.demo} className="inline-flex items-center gap-2 bg-neutral-900 text-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all duration-200 font-medium tracking-wide">Live Demo</a>
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 border-2 border-neutral-900 bg-[#F4F4F0] px-5 py-2.5 text-sm md:text-base shadow-[4px_4px_0px_#111] hover:-translate-y-1 hover:shadow-[2px_2px_0px_#111] transition-all duration-200 font-bold tracking-wide text-neutral-900">GitHub</a>
                   </div>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
         </div>
       </div>
