@@ -21,15 +21,6 @@ npm-debug.log*
 .env.test.local
 .env.production.local
 
-# agent logs
-.remember/
-.kilo/
-.agents/
-.gemini/
-.claude/
-.omniroute/
-scratch/
-*.log
 
 # IDE
 .vscode/
