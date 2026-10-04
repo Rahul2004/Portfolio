@@ -1,33 +1,11 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
-export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+// Memoized clock to completely isolate 1-second interval re-renders from the main navbar
+const ClockDisplay = memo(function ClockDisplay() {
   const [time, setTime] = useState<string>('');
-  const [activeSection, setActiveSection] = useState<string>('hero');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      const sections = ['contact', 'skills', 'projects', 'about', 'hero'];
-      const scrollPosition = window.scrollY + 250;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(sectionId);
-          break;
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const updateTime = () => {
@@ -45,9 +23,66 @@ export default function Navigation() {
         setTime(new Date().toLocaleTimeString());
       }
     };
+
     updateTime();
     const interval = setInterval(updateTime, 1000);
     return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span className="text-white font-mono" suppressHydrationWarning>
+      {time || '12:00:00 PM'}
+    </span>
+  );
+});
+
+export default function Navigation() {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>('hero');
+
+  useEffect(() => {
+    const sectionIds = ['hero', 'about', 'projects', 'skills', 'contact'];
+    let sectionObserver: IntersectionObserver | null = null;
+    let topObserver: IntersectionObserver | null = null;
+
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      topObserver = new IntersectionObserver(
+        ([entry]) => {
+          setScrolled(!entry.isIntersecting);
+        },
+        { threshold: 0, rootMargin: '-20px 0px 0px 0px' }
+      );
+
+      const heroEl = document.getElementById('hero');
+      if (heroEl) {
+        topObserver.observe(heroEl);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              setActiveSection(entry.target.id);
+            }
+          });
+        },
+        { rootMargin: '-25% 0px -65% 0px' }
+      );
+      sectionObserver = observer;
+
+      sectionIds.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          observer.observe(el);
+        }
+      });
+    }
+
+    return () => {
+      if (topObserver) topObserver.disconnect();
+      if (sectionObserver) sectionObserver.disconnect();
+    };
   }, []);
 
   const navLinks = [
@@ -59,13 +94,14 @@ export default function Navigation() {
   return (
     <>
       <motion.header
+        suppressHydrationWarning
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,padding] duration-200 ease-out gpu-accelerated ${
           scrolled
-            ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
-            : 'bg-transparent border-b border-white/5 py-6'
+            ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10 py-3.5 shadow-md'
+            : 'bg-transparent border-b border-white/5 py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
@@ -74,28 +110,20 @@ export default function Navigation() {
             whileHover={{ scale: 1.02 }}
             className="group flex items-center gap-3"
           >
-            <motion.div
-              whileHover={{ rotate: 360, scale: 1.1 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-xs font-mono font-bold tracking-wider group-hover:border-white group-hover:bg-white/10 transition-all cursor-pointer"
-            >
+            <div className="w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-xs font-mono font-bold tracking-wider group-hover:border-white group-hover:bg-white/10 transition-colors cursor-pointer">
               RK
-            </motion.div>
-            <div className="flex flex-col">
-              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-neutral-300 transition-colors">
+            </div>
+            <div className="flex flex-col" suppressHydrationWarning>
+              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-neutral-300 transition-colors" suppressHydrationWarning>
                 Rahul Kumar
               </span>
-              <span className="text-xs font-mono text-neutral-400">
-                Frontend Architect
+              <span className="text-xs font-mono text-neutral-400" suppressHydrationWarning>
+                BCA Student · Developer
               </span>
             </div>
           </motion.a>
 
-          <motion.div
-            whileHover={{ scale: 1.03, y: -1, borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.06)' }}
-            transition={{ duration: 0.25 }}
-            className="hidden lg:flex items-center gap-5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all"
-          >
+          <div className="hidden lg:flex items-center gap-5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono cursor-default transition-colors">
             <div className="flex items-center gap-2">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -105,10 +133,9 @@ export default function Navigation() {
             </div>
             <span className="text-neutral-600">·</span>
             <div className="text-neutral-400 text-xs tracking-wider">
-              <span>Chandigarh, IN</span>{' '}
-              <span className="text-white font-mono">{time || '12:00:00 PM'}</span>
+              <span>Chandigarh, IN</span> <ClockDisplay />
             </div>
-          </motion.div>
+          </div>
 
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex items-center gap-6" aria-label="Main Navigation">
@@ -123,13 +150,11 @@ export default function Navigation() {
                     }`}
                   >
                     <span>{link.label}</span>
-                    {isActive && (
-                      <motion.span
-                        layoutId="activeNavIndicator"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    )}
+                    <span
+                      className={`absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full transition-opacity duration-200 pointer-events-none ${
+                        isActive ? 'opacity-100' : 'opacity-0'
+                      }`}
+                    />
                   </a>
                 );
               })}
@@ -137,9 +162,9 @@ export default function Navigation() {
 
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.05, y: -2, boxShadow: '0 8px 30px rgba(255,255,255,0.25)' }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 bg-white text-black text-xs font-mono font-medium uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md"
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 bg-white text-black text-xs font-mono font-medium uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
             >
               <span>Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -159,11 +184,11 @@ export default function Navigation() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-40 bg-[#0a0a0a]/98 backdrop-blur-2xl pt-28 px-6 md:hidden flex flex-col justify-between pb-12 border-b border-white/10"
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-lg pt-24 px-6 md:hidden flex flex-col justify-between pb-12 border-b border-white/10 gpu-accelerated"
           >
             <div className="flex flex-col gap-6">
               <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400">
@@ -176,7 +201,7 @@ export default function Navigation() {
                     href={link.href}
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.08 }}
+                    transition={{ delay: idx * 0.04 }}
                     onClick={() => setMobileOpen(false)}
                     className={`flex items-baseline justify-between text-2xl font-light border-b border-white/5 pb-3 ${
                       activeSection === link.id ? 'text-white font-normal' : 'text-neutral-300 hover:text-white'
@@ -192,7 +217,7 @@ export default function Navigation() {
             <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
               <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
                 <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                <span>Available for frontend opportunities</span>
+                <span>Available for opportunities &amp; roles</span>
               </div>
               <motion.a
                 href="#contact"

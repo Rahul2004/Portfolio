@@ -95,6 +95,7 @@ export default function DynamicWord({
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
+    if (typeof window !== 'undefined' && !window.matchMedia('(hover: hover)').matches) return;
     setAnimIndex((prev) => (prev + 1) % animationPresets.length);
     setIsHovered(true);
   };
@@ -106,10 +107,7 @@ export default function DynamicWord({
   const currentPreset = animationPresets[animIndex];
 
   return (
-    <motion.span
-      variants={variants}
-      className="inline-block"
-    >
+    <motion.span variants={variants} className="inline-block">
       <motion.span
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -132,8 +130,9 @@ export default function DynamicWord({
               }
         }
         transition={isHovered ? currentPreset.transition : restingTransition}
-        whileTap={{ scale: 0.98 }}
-        className={`inline-block cursor-pointer select-none ${className}`}
+        className={`inline-block cursor-pointer select-none gpu-accelerated ${
+          isHovered ? 'will-change-transform' : ''
+        } ${className}`}
       >
         {children}
       </motion.span>

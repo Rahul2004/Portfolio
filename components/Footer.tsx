@@ -12,10 +12,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-1">
           <p className="text-white font-medium tracking-tight">
-            Rahul Kumar — Frontend Developer &amp; UI Architect
+            Rahul Kumar — BCA Student &amp; Full-Stack Developer
           </p>
           <p className="text-neutral-500">
-            Chandigarh, India · Crafted with Next.js, Tailwind &amp; Framer Motion
+            Chandigarh, India · Saraswati Group of Colleges (5th Sem) · Built with Next.js &amp; Tailwind
           </p>
         </div>
 
@@ -45,7 +45,7 @@ export default function Footer() {
             onClick={scrollToTop}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-neutral-300 hover:text-white hover:border-white/30 transition-all ml-auto md:ml-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-neutral-300 hover:text-white hover:border-white/30 transition-colors ml-auto md:ml-0"
             aria-label="Scroll to top"
           >
             <span>Top</span>

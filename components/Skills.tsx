@@ -1,59 +1,51 @@
 'use client';
 import { motion } from 'framer-motion';
-import { Layers, Server, Wrench } from 'lucide-react';
+import { Code2, Layers, Server, Database, Cpu, Wrench } from 'lucide-react';
 import DynamicWord from '@/components/DynamicWord';
 import InteractiveCard from '@/components/InteractiveCard';
 
 const categories = [
   {
     index: '01',
-    title: 'Frontend & UI/UX',
-    subtitle: 'Client-side engineering, responsive architecture & interface motion',
-    icon: Layers,
-    items: [
-      'HTML',
-      'CSS',
-      'JavaScript',
-      'React',
-      'Next.js',
-      'Tailwind CSS',
-      'Framer Motion',
-      'Figma',
-      'Vite',
-    ],
+    title: 'Programming',
+    subtitle: 'Core programming & scripting languages used across projects and coursework',
+    icon: Code2,
+    items: ['JavaScript', 'TypeScript', 'Python', 'C++', 'SQL'],
   },
   {
     index: '02',
-    title: 'Backend & APIs',
-    subtitle: 'Server endpoints, RESTful services, database schemas & microservices',
-    icon: Server,
-    items: [
-      'Node.js',
-      'Express',
-      'Python',
-      'FastAPI',
-      'PostgreSQL',
-      'MongoDB',
-      'REST',
-      'GraphQL',
-    ],
+    title: 'Frontend Development',
+    subtitle: 'Modern component-driven web interfaces, fluid layouts & client-side interactions',
+    icon: Layers,
+    items: ['React', 'Next.js', 'Tailwind CSS', 'HTML5', 'CSS3', 'Framer Motion'],
   },
   {
     index: '03',
-    title: 'Tools & DevOps',
-    subtitle: 'Version control, cloud infrastructure, containerization & code quality',
+    title: 'Backend & APIs',
+    subtitle: 'REST endpoints, server-side routing & asynchronous services',
+    icon: Server,
+    items: ['Node.js', 'Express', 'FastAPI', 'REST APIs'],
+  },
+  {
+    index: '04',
+    title: 'Databases & Storage',
+    subtitle: 'Relational & NoSQL persistence and client state caching',
+    icon: Database,
+    items: ['PostgreSQL', 'MongoDB', 'MySQL', 'LocalStorage'],
+  },
+  {
+    index: '05',
+    title: 'AI & Automation',
+    subtitle: 'Practical API integrations, structured prompt handling & workflow scripts',
+    icon: Cpu,
+    items: ['Gemini API', 'Prompt Engineering', 'Automation Scripts'],
+  },
+  {
+    index: '06',
+    title: 'Cloud & Developer Tools',
+    subtitle: 'Version control, container environments & developer tooling',
     icon: Wrench,
-    items: [
-      'Git',
-      'Docker',
-      'VS Code',
-      'ESLint',
-      'Prettier',
-      'CI/CD',
-      'AWS',
-      'Vercel',
-      'Terraform',
-    ],
+    items: ['Git', 'GitHub', 'Docker', 'VS Code', 'Postman', 'Vercel'],
   },
 ];
 
@@ -68,7 +60,7 @@ export default function Skills() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 pb-8 border-b border-white/10"
         >
           <div>
@@ -82,55 +74,49 @@ export default function Skills() {
             </h2>
           </div>
           <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
-            Core Technologies
+            Categorized Stack
           </span>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat, idx) => {
             const Icon = cat.icon;
 
             return (
               <InteractiveCard
                 key={cat.title}
-                tiltIntensity={5}
-                initial={{ opacity: 0, y: 24 }}
+                tiltIntensity={4}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 0.6, delay: idx * 0.12 }}
-                whileHover={{ y: -6 }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 hover:bg-white/[0.04] transition-all duration-300 flex flex-col justify-between h-full will-change-transform shadow-[0_10px_35px_rgba(0,0,0,0.3)]"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.45, delay: idx * 0.05 }}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 hover:bg-white/[0.04] hover:border-white/30 transition-[border-color,background-color] duration-200 flex flex-col justify-between h-full shadow-[0_10px_35px_rgba(0,0,0,0.3)]"
               >
                 <div>
-                  <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10">
+                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
                     <span className="text-xs font-mono text-neutral-400 font-bold">
                       {cat.index}
                     </span>
                     <Icon className="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors" />
                   </div>
 
-                  <h3 className="text-xl font-bold tracking-tight text-white mb-2">
+                  <h3 className="text-lg font-bold tracking-tight text-white mb-2">
                     {cat.title}
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mb-8 leading-relaxed">
+                  <p className="text-xs font-mono text-neutral-400 mb-6 leading-relaxed">
                     {cat.subtitle}
                   </p>
                 </div>
 
+                {/* Pure CSS hover pills: zero Framer Motion IO overhead on mobile */}
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
-                  {cat.items.map((item, itemIdx) => (
-                    <motion.span
+                  {cat.items.map((item) => (
+                    <span
                       key={item}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: 0.1 + itemIdx * 0.03 }}
-                      whileHover={{ scale: 1.08, y: -2 }}
-                      whileTap={{ scale: 0.94 }}
-                      className="px-3 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-all cursor-default"
+                      className="px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-[border-color,background-color,color] duration-150 cursor-default"
                     >
                       {item}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </InteractiveCard>

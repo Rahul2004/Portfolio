@@ -92,7 +92,7 @@ export default function Contact16() {
               <Button
                 type="submit"
                 size="lg"
-                className="mt-1 w-full rounded-full bg-ink text-paper hover:bg-ink/90 shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                className="mt-1 w-full rounded-full bg-ink text-paper hover:bg-ink/90 shadow-[4px_4px_0px_#111] hover:shadow-[2px_2px_0px_#111] hover:translate-x-[2px] hover:translate-y-[2px] transition-[transform,background-color] duration-150"
               >
                 Send message
                 <ArrowRight className="size-4" />

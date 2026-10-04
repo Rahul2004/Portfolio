@@ -113,7 +113,7 @@ export default function Contact() {
                 Communication Channels
               </span>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-all text-sm font-mono text-neutral-300">
+                <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300">
                   <div className="flex items-center gap-2.5 sm:gap-3 truncate pr-2 min-w-0">
                     <Mail className="w-4 h-4 text-neutral-400 shrink-0" />
                     <span className="truncate text-white text-xs sm:text-sm">{contactEmail}</span>
@@ -123,7 +123,7 @@ export default function Contact() {
                     onClick={handleCopyEmail}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-300 hover:text-white hover:border-white/30 transition-all shrink-0"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-300 hover:text-white hover:border-white/30 transition-colors shrink-0"
                   >
                     {copied ? (
                       <>
@@ -145,7 +145,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ x: 3, borderColor: 'rgba(255,255,255,0.3)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-all text-sm font-mono text-neutral-300 group"
+                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300 group"
                 >
                   <div className="flex items-center gap-3">
                     <GithubIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
@@ -160,7 +160,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ x: 3, borderColor: 'rgba(255,255,255,0.3)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-all text-sm font-mono text-neutral-300 group"
+                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300 group"
                 >
                   <div className="flex items-center gap-3">
                     <LinkedinIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
@@ -179,7 +179,7 @@ export default function Contact() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-7"
           >
-            <InteractiveCard tiltIntensity={3} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 md:p-12 backdrop-blur-sm shadow-[0_15px_45px_rgba(0,0,0,0.35)]">
+            <InteractiveCard tiltIntensity={2} className="rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-8 md:p-12 shadow-xl hover:border-white/30">
               {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -269,7 +269,7 @@ export default function Contact() {
                     disabled={submitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.15)] disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>{submitting ? 'Transmitting...' : 'Dispatch Message'}</span>
