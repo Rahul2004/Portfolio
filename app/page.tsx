@@ -1,3 +1,5 @@
+'use client';
+
 import Navigation from '@/components/Navigation';
 import Hero from '@/components/HeroSection';
 import TechMarquee from '@/components/TechMarquee';
