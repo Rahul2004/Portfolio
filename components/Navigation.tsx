@@ -1,104 +1,211 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { ChevronRight, Menu, X, Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [dark, setDark] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const [time, setTime] = useState<string>('');
+  const [activeSection, setActiveSection] = useState<string>('hero');
 
   useEffect(() => {
-    setMounted(true);
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+
+      const sections = ['contact', 'skills', 'projects', 'about', 'hero'];
+      const scrollPosition = window.scrollY + 250;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el && el.offsetTop <= scrollPosition) {
+          setActiveSection(sectionId);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    const updateTime = () => {
+      try {
+        const now = new Date();
+        const formatted = new Intl.DateTimeFormat('en-US', {
+          timeZone: 'Asia/Kolkata',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+        }).format(now);
+        setTime(formatted);
+      } catch {
+        setTime(new Date().toLocaleTimeString());
+      }
+    };
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    // Only run media query after mount to avoid SSR mismatch
-    if (!mounted) return;
-    const media = window.matchMedia('(prefers-color-scheme: dark)');
-    setDark(media.matches);
-    const handler = (e: MediaQueryListEvent) => setDark(e.matches);
-    media.addEventListener('change', handler);
-    return () => media.removeEventListener('change', handler);
-  }, [mounted]);
-
-  const links = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Projects', href: '#projects' },
+  const navLinks = [
+    { label: 'About', href: '#about', id: 'about' },
+    { label: 'Projects', href: '#projects', id: 'projects' },
+    { label: 'Skills', href: '#skills', id: 'skills' },
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-12 lg:px-24 py-5 transition-all duration-300 ${
-        scrolled ? 'bg-[#F4F4F0]/90 backdrop-blur-sm border-b-2 border-neutral-900 shadow-[4px_4px_0px_#111]' : 'bg-transparent'
-      }`}
-    >
-      <div className="max-w-6xl flex items-center justify-between">
-        <a href="#hero" className="font-serif text-xl md:text-2xl tracking-tight text-neutral-900">
-          Rahul Kumar
-        </a>
-        <div className="flex items-center gap-4 md:gap-8">
-          <div className="hidden md:flex items-center gap-8 text-sm tracking-wide text-neutral-900">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} className="hover:text-muted transition-colors">{l.label}</a>
-            ))}
-            <a href="#contact" className="inline-flex items-center gap-1.5 hover:text-muted transition-colors">
-              Contact <ChevronRight size={14} strokeWidth={1.5} />
-            </a>
+    <>
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? 'bg-[#0a0a0a]/90 backdrop-blur-xl border-b border-white/10 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
+            : 'bg-transparent border-b border-white/5 py-6'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-24 flex items-center justify-between">
+          <motion.a
+            href="#hero"
+            whileHover={{ scale: 1.02 }}
+            className="group flex items-center gap-3"
+          >
+            <motion.div
+              whileHover={{ rotate: 360, scale: 1.1 }}
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-xs font-mono font-bold tracking-wider group-hover:border-white group-hover:bg-white/10 transition-all cursor-pointer"
+            >
+              RK
+            </motion.div>
+            <div className="flex flex-col">
+              <span className="text-sm font-semibold tracking-tight text-white group-hover:text-neutral-300 transition-colors">
+                Rahul Kumar
+              </span>
+              <span className="text-xs font-mono text-neutral-400">
+                Frontend Architect
+              </span>
+            </div>
+          </motion.a>
+
+          <motion.div
+            whileHover={{ scale: 1.03, y: -1, borderColor: 'rgba(255,255,255,0.3)', backgroundColor: 'rgba(255,255,255,0.06)' }}
+            transition={{ duration: 0.25 }}
+            className="hidden lg:flex items-center gap-5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono cursor-default shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-all"
+          >
+            <div className="flex items-center gap-2">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span className="text-neutral-300 tracking-wider text-xs">Available for work</span>
+            </div>
+            <span className="text-neutral-600">·</span>
+            <div className="text-neutral-400 text-xs tracking-wider">
+              <span>Chandigarh, IN</span>{' '}
+              <span className="text-white font-mono">{time || '12:00:00 PM'}</span>
+            </div>
+          </motion.div>
+
+          <div className="hidden md:flex items-center gap-8">
+            <nav className="flex items-center gap-6" aria-label="Main Navigation">
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.id;
+                return (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className={`relative py-1 text-xs font-mono uppercase tracking-[0.18em] transition-colors ${
+                      isActive ? 'text-white font-semibold' : 'text-neutral-400 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeNavIndicator"
+                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-white rounded-full"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                  </a>
+                );
+              })}
+            </nav>
+
+            <motion.a
+              href="#contact"
+              whileHover={{ scale: 1.05, y: -2, boxShadow: '0 8px 30px rgba(255,255,255,0.25)' }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 bg-white text-black text-xs font-mono font-medium uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md"
+            >
+              <span>Connect</span>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </motion.a>
           </div>
-          <a
-            href="https://github.com/Rahul2004"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-neutral-900 hover:text-[#F4F4F0] transition-all"
-            aria-label="GitHub Profile"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/rahulkumar2004"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-neutral-900 hover:text-[#F4F4F0] transition-all"
-            aria-label="LinkedIn Profile"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
-          </a>
-          <button
-            onClick={() => { setDark(!dark); document.documentElement.classList.toggle('dark'); }}
-            className="p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-ink hover:text-[#F4F4F0] transition-all"
-            aria-label={dark ? 'Light mode' : 'Dark mode'}
-          >
-            {dark ? <Sun size={18} strokeWidth={2} /> : <Moon size={18} strokeWidth={2} />}
-          </button>
+
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg border-2 border-neutral-900 bg-[#F4F4F0] hover:bg-ink hover:text-[#F4F4F0] transition-all"
-            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            className="md:hidden p-2 rounded-full border border-white/10 text-neutral-300 hover:text-white hover:border-white/20 transition-colors"
+            aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={20} strokeWidth={2} /> : <Menu size={20} strokeWidth={2} />}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </div>
-      {mobileOpen && (
-        <div className="md:hidden mt-4 py-4 border-t-2 border-neutral-900 bg-[#F4F4F0] shadow-[4px_4px_0px_#111]">
-          <div className="flex flex-col gap-4 text-sm tracking-wide text-neutral-900">
-            {links.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setMobileOpen(false)} className="hover:text-muted transition-colors px-2 py-1">{l.label}</a>
-            ))}
-            <a href="#contact" onClick={() => setMobileOpen(false)} className="inline-flex items-center gap-1.5 hover:text-muted transition-colors px-2 py-1">
-              Contact <ChevronRight size={14} strokeWidth={1.5} />
-            </a>
-          </div>
-        </div>
-      )}
-    </nav>
+      </motion.header>
+
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-[#0a0a0a]/98 backdrop-blur-2xl pt-28 px-6 md:hidden flex flex-col justify-between pb-12 border-b border-white/10"
+          >
+            <div className="flex flex-col gap-6">
+              <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400">
+                Menu
+              </span>
+              <div className="flex flex-col gap-5">
+                {navLinks.map((link, idx) => (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: idx * 0.08 }}
+                    onClick={() => setMobileOpen(false)}
+                    className={`flex items-baseline justify-between text-2xl font-light border-b border-white/5 pb-3 ${
+                      activeSection === link.id ? 'text-white font-normal' : 'text-neutral-300 hover:text-white'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    <span className="font-mono text-xs text-neutral-400">0{idx + 1}</span>
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
+              <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
+                <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+                <span>Available for frontend opportunities</span>
+              </div>
+              <motion.a
+                href="#contact"
+                whileTap={{ scale: 0.98 }}
+                onClick={() => setMobileOpen(false)}
+                className="w-full py-3.5 rounded-full bg-white text-black text-center text-xs font-mono font-bold uppercase tracking-wider"
+              >
+                Let&apos;s Connect
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

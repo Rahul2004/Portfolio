@@ -24,6 +24,12 @@ npm-debug.log*
 # agent logs
 .remember/
 .kilo/
+.agents/
+.gemini/
+.claude/
+.omniroute/
+scratch/
+*.log
 
 # IDE
 .vscode/
