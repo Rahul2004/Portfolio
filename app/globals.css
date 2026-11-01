@@ -1,9 +1,38 @@
 @import "tailwindcss";
 
+/* Hallmark · depth: restyle · theme: Console (by request) · genre: modern-minimal
+ * ground: graphite oklch(17% 0.008 250) · ink: pale oklch(95% 0.005 250) · accent: amber oklch(82% 0.15 80)
+ * instrument: cool-blue oklch(77% 0.12 245) · panels: 10px hairline rule oklch(31% 0.01 250) */
+
 :root {
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color-scheme: dark;
+
+  /* Hallmark Console Theme Tokens */
+  --color-paper: oklch(17% 0.008 250);
+  --color-paper-2: oklch(21% 0.009 250);
+  --color-paper-3: oklch(13.5% 0.007 250);
+  --color-ink: oklch(95% 0.005 250);
+  --color-ink-2: oklch(83% 0.008 250);
+  --color-muted: oklch(71% 0.01 250);
+  --color-rule: oklch(31% 0.01 250);
+  --color-rule-2: oklch(42% 0.012 250);
+  --color-accent: oklch(82% 0.15 80);
+  --color-accent-ink: oklch(18% 0.04 75);
+  --color-accent-soft: oklch(29% 0.05 80);
+  --color-focus: oklch(82% 0.15 80);
+  --color-cool: oklch(77% 0.12 245);
+  --color-cool-soft: oklch(29% 0.05 245);
+  --color-ok: oklch(76% 0.15 150);
+  --color-bad: oklch(70% 0.17 25);
+
+  --font-sans: var(--font-display, "Host Grotesk", system-ui, -apple-system, sans-serif);
+  --font-mono: var(--font-mono-measured, "Atkinson Hyperlegible Mono", ui-monospace, monospace);
+  --font-display: var(--font-sans);
+  --font-body: var(--font-sans);
+
+  --radius-card: 10px;
+  --radius-pill: 6px;
+  --rule-hair: 1px;
 }
 
 /* 1. Global Viewport, Smooth Scrolling & Touch Optimization */
@@ -15,6 +44,7 @@ html {
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
+  scrollbar-color: var(--color-rule) var(--color-paper);
 }
 
 *, *::before, *::after {
@@ -25,8 +55,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  background-color: #0a0a0a;
-  color: #f4f4f5;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   overflow-x: hidden;
   width: 100%;
   max-width: 100vw;
@@ -34,6 +64,17 @@ body {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: auto;
   overscroll-behavior-x: none;
+  font-family: var(--font-body);
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 /* 2. Hardware Acceleration & Compositing Utilities */
@@ -54,204 +95,97 @@ body {
 
 /* 4. Cross-Browser Glassmorphism & Backdrop Filter Fallbacks */
 .glass-panel {
-  background-color: rgba(14, 14, 17, 0.88);
+  background-color: rgba(22, 24, 28, 0.88);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
 }
 
-/* Firefox compositing optimization: avoids deep compositing frame drops */
 @supports (-moz-appearance: none) {
   .backdrop-blur-xl,
   .backdrop-blur-lg,
   .backdrop-blur-md,
   .glass-panel {
-    background-color: rgba(12, 12, 14, 0.96) !important;
+    background-color: rgba(20, 22, 25, 0.96) !important;
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
   }
 }
 
-/* Fallback for browsers that do not support backdrop-filter */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .glass-panel,
   .backdrop-blur-xl,
   .backdrop-blur-lg,
   .backdrop-blur-md,
   .backdrop-blur-sm {
-    background-color: #0e0e11 !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
+    background-color: rgba(20, 22, 25, 0.95) !important;
   }
 }
 
-/* 5. Pure Compositor Keyframe Animations */
-@keyframes marquee-scroll {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  100% {
-    transform: translate3d(-50%, 0, 0);
-  }
+/* 5. Custom Ultra-Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rule-2);
+}
+
+/* 6. Marquee & Micro-Interactions */
+@keyframes marqueeCss {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
 }
 
 .animate-marquee-css {
   display: flex;
   width: max-content;
-  will-change: transform;
-  animation: marquee-scroll 30s linear infinite;
-}
-
-@keyframes gentle-bounce {
-  0%, 100% {
-    transform: translate3d(0, 0, 0);
-  }
-  50% {
-    transform: translate3d(0, 4px, 0);
-  }
-}
-
-.animate-gentle-bounce {
-  animation: gentle-bounce 1.6s ease-in-out infinite;
+  animation: marqueeCss 35s linear infinite;
   will-change: transform;
 }
 
-@keyframes subtle-pulse {
+.animate-marquee-css:hover {
+  animation-play-state: paused;
+}
+
+@keyframes subtleGlow {
   0%, 100% {
-    opacity: 0.03;
-    transform: scale3d(1, 1, 1);
+    opacity: 0.3;
+    transform: translate(-50%, 0) scale(0.98);
   }
   50% {
-    opacity: 0.055;
-    transform: scale3d(1.04, 1.04, 1);
+    opacity: 0.55;
+    transform: translate(-50%, 0) scale(1.02);
   }
 }
 
 .animate-subtle-glow {
-  animation: subtle-pulse 8s ease-in-out infinite;
-  will-change: transform, opacity;
+  animation: subtleGlow 8s ease-in-out infinite;
+  will-change: opacity, transform;
 }
 
-/* 6. Technical Grid Pattern & Floating Blob Animations */
-.bg-grid-pattern {
-  background-size: 48px 48px;
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-}
-
-@keyframes float-blob-indigo {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-  }
-  33% {
-    transform: translate3d(45px, -65px, 0) scale3d(1.07, 1.07, 1);
-  }
-  66% {
-    transform: translate3d(-35px, 35px, 0) scale3d(0.95, 0.95, 1);
-  }
-}
-
-@keyframes float-blob-cyan {
-  0%, 100% {
-    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
-  }
-  33% {
-    transform: translate3d(-55px, 55px, 0) scale3d(1.06, 1.06, 1);
-  }
-  66% {
-    transform: translate3d(40px, -45px, 0) scale3d(0.94, 0.94, 1);
-  }
-}
-
-.animate-float-indigo {
-  animation: float-blob-indigo 18s ease-in-out infinite;
-  will-change: transform;
-}
-
-.animate-float-cyan {
-  animation: float-blob-cyan 22s ease-in-out infinite;
-  will-change: transform;
-}
-
-/* 7. Off-Screen Layout & Paint Virtualization */
-#about,
-#projects,
-#skills,
-#contact {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 750px;
-}
-
-/* 8. Mobile & Low-End Device Throttling */
-@media (max-width: 768px), (pointer: coarse) {
-  * {
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Strip CPU/GPU-killing heavy filters on mobile devices */
-  .blur-3xl {
-    filter: blur(10px) !important;
-  }
-  .blur-2xl {
-    filter: blur(8px) !important;
-  }
-  .blur-xl {
-    filter: blur(6px) !important;
-  }
-
-  .mobile-glow-hidden {
-    display: none !important;
-  }
-
-  /* Disable continuous background floating animations to preserve mobile battery & fill-rate */
-  .animate-float-indigo,
-  .animate-float-cyan {
-    animation: none !important;
-  }
-
-  .animate-marquee-css {
-    animation-duration: 38s;
-  }
-}
-
-/* 9. Accessibility & Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto !important;
-  }
   *, *::before, *::after {
-    animation-duration: 0.001ms !important;
+    animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
   .animate-marquee-css {
-    animation-play-state: paused !important;
-  }
-  .animate-gentle-bounce,
-  .animate-subtle-glow,
-  .animate-float-indigo,
-  .animate-float-cyan {
     animation: none !important;
+    transform: none !important;
   }
-}
-
-/* 10. Custom Scrollbar Styling (Optimized) */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
-}
-
-::selection {
-  background: #ffffff;
-  color: #000000;
+  .animate-subtle-glow {
+    animation: none !important;
+    opacity: 0.35 !important;
+  }
 }

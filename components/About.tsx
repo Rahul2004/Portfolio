@@ -9,12 +9,12 @@ export default function About() {
     {
       icon: GraduationCap,
       label: 'Degree & Semester',
-      value: 'BCA (5th Semester) · 2024 – Present',
+      value: 'BCA (5th Semester) , 2024 – Present',
     },
     {
       icon: MapPin,
       label: 'College & Location',
-      value: 'Saraswati Group of Colleges · Chandigarh, India',
+      value: 'Saraswati Group of Colleges , Chandigarh, India',
     },
     {
       icon: Code2,
@@ -49,16 +49,13 @@ export default function About() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 pb-8 border-b border-white/10"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-neutral-400 uppercase mb-3">
-              <span className="text-white font-bold">01</span>
-              <span>· Education &amp; Profile</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white uppercase flex items-center gap-3 flex-wrap">
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white  flex items-center gap-3 flex-wrap">
               <DynamicWord hoverColor="#ffffff">About</DynamicWord>{' '}
               <DynamicWord hoverColor="#ffffff">Me.</DynamicWord>
             </h2>
           </div>
-          <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
+          <span className="text-xs text-neutral-400  tracking-normal">
             Profile Overview
           </span>
         </motion.div>
@@ -73,17 +70,9 @@ export default function About() {
           >
             <InteractiveCard
               tiltIntensity={4}
-              className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] space-y-6 shadow-[0_10px_35px_rgba(0,0,0,0.3)] hover:border-white/30"
+              className="p-6 sm:p-8 rounded-2xl border border-white/10 bg-white/[0.02] space-y-6 shadow-lg hover:border-white/30"
             >
-              <div className="flex items-center justify-between border-b border-white/10 pb-4">
-                <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
-                  Academic &amp; Profile Facts
-                </span>
-                <span className="text-xs font-mono text-emerald-400 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                  BCA 5th Sem
-                </span>
-              </div>
+              <div className="border-b border-white/10 pb-4"><span className="text-xs text-neutral-400">Academic &amp; Profile Facts</span></div>
 
               <div className="space-y-5">
                 {highlights.map((item) => {
@@ -93,7 +82,7 @@ export default function About() {
                       key={item.label}
                       className="space-y-1"
                     >
-                      <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
+                      <div className="flex items-center gap-2 text-xs text-neutral-400">
                         <Icon className="w-3.5 h-3.5 text-neutral-400" />
                         <span>{item.label}</span>
                       </div>
@@ -106,7 +95,7 @@ export default function About() {
               </div>
             </InteractiveCard>
 
-            <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.01] flex items-center justify-between text-xs font-mono text-neutral-400 hover:border-white/20 transition-colors cursor-default">
+            <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.01] flex items-center justify-between text-xs text-neutral-400 hover:border-white/20 transition-colors cursor-default">
               <span>Current Status</span>
               <span className="text-white font-semibold">Student &amp; Active Builder</span>
             </div>
@@ -139,9 +128,7 @@ export default function About() {
                   key={pill.number}
                   className="p-3 rounded-2xl border border-white/5 bg-white/[0.01] hover:border-white/20 hover:bg-white/[0.03] transition-colors space-y-1 cursor-default shadow-sm"
                 >
-                  <span className="text-xs font-mono text-neutral-400 font-bold block">
-                    {pill.number}
-                  </span>
+                  
                   <p className="text-xs text-neutral-300 font-medium leading-snug">
                     {pill.desc}
                   </p>

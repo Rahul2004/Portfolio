@@ -44,7 +44,7 @@ const projects = [
     ],
     github: 'https://github.com/Rahul2004/Food-delivery',
     demo: 'https://quickbite-onnlinne.vercel.app',
-    badge: 'Web Application · Live Demo',
+    badge: 'Web Application , Live Demo',
     icon: LayoutDashboard,
     previewType: 'dashboard',
   },
@@ -65,16 +65,13 @@ export default function Projects() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-20 pb-8 border-b border-white/10"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-neutral-400 uppercase mb-3">
-              <span className="text-white font-bold">02</span>
-              <span>· Practical Case Studies</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white uppercase flex items-center gap-3 flex-wrap">
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white  flex items-center gap-3 flex-wrap">
               <DynamicWord hoverColor="#ffffff">Featured</DynamicWord>{' '}
               <DynamicWord hoverColor="#ffffff">Projects.</DynamicWord>
             </h2>
           </div>
-          <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
+          <span className="text-xs text-neutral-400  tracking-normal">
             Hands-On Builds
           </span>
         </motion.div>
@@ -101,10 +98,10 @@ export default function Projects() {
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold text-neutral-400">
-                        Project {p.number}
+                      <span className="text-xs font-bold text-neutral-400">
+                        Release {p.number}
                       </span>
-                      <span className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-300 uppercase tracking-wider flex items-center gap-1.5">
+                      <span className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-neutral-300  tracking-normal flex items-center gap-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                         <span>{p.badge}</span>
                       </span>
@@ -114,14 +111,14 @@ export default function Projects() {
                       <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-white group-hover:text-neutral-100 transition-colors">
                         {p.title}
                       </h3>
-                      <p className="text-xs font-mono text-neutral-400 mt-1">
+                      <p className="text-xs text-neutral-400 mt-1">
                         {p.subtitle}
                       </p>
                     </div>
 
                     <div className="space-y-3">
                       <div>
-                        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block mb-1">
+                        <span className="text-[11px] text-neutral-400  tracking-normal block mb-1">
                           Problem Solved
                         </span>
                         <p className="text-neutral-300 text-sm md:text-base leading-relaxed font-light">
@@ -130,7 +127,7 @@ export default function Projects() {
                       </div>
 
                       <div>
-                        <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block mb-1">
+                        <span className="text-[11px] text-neutral-400  tracking-normal block mb-1">
                           What I Built
                         </span>
                         <p className="text-neutral-300 text-sm md:text-base leading-relaxed font-light">
@@ -140,14 +137,14 @@ export default function Projects() {
                     </div>
 
                     <div className="space-y-2 pt-2">
-                      <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block">
+                      <span className="text-[11px] text-neutral-400  tracking-normal block">
                         Key Features &amp; Implementation
                       </span>
                       <ul className="space-y-1.5">
                         {p.highlights.map((feat, fIdx) => (
                           <li
                             key={fIdx}
-                            className="flex items-start gap-2 text-xs font-mono text-neutral-300"
+                            className="flex items-start gap-2 text-xs text-neutral-300"
                           >
                             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
                             <span>{feat}</span>
@@ -161,7 +158,7 @@ export default function Projects() {
                       {p.stack.map((tech) => (
                         <span
                           key={tech}
-                          className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono text-neutral-300 hover:border-white/30 hover:bg-white/10 hover:text-white transition-colors cursor-default"
+                          className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs text-neutral-300 hover:border-white/30 hover:bg-white/10 hover:text-white transition-colors cursor-default"
                         >
                           {tech}
                         </span>
@@ -176,7 +173,7 @@ export default function Projects() {
                           rel="noopener noreferrer"
                           whileHover={{ scale: 1.04, y: -2 }}
                           whileTap={{ scale: 0.96 }}
-                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+                          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white text-black text-xs font-bold  tracking-normal hover:bg-neutral-200 transition-colors shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                         >
                           <span>Live Demo</span>
                           <ExternalLink className="w-3.5 h-3.5" />
@@ -189,7 +186,7 @@ export default function Projects() {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.04, y: -2 }}
                         whileTap={{ scale: 0.96 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 text-white text-xs font-mono font-medium uppercase tracking-wider hover:bg-white/10 hover:border-white/40 transition-[background-color,border-color]"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 text-white text-xs font-medium  tracking-normal hover:bg-white/10 hover:border-white/40 transition-[background-color,border-color] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                       >
                         <GithubIcon className="w-3.5 h-3.5" />
                         <span>Source Code</span>
@@ -204,10 +201,10 @@ export default function Projects() {
                     }`}
                   >
                     <div
-                      className="relative rounded-2xl border border-white/10 bg-[#0f0f12] p-5 sm:p-6 shadow-lg overflow-hidden group-hover:border-white/30 transition-[border-color] duration-200"
+                      className="relative rounded-2xl border border-white/10 bg-[var(--color-paper-2)] p-5 sm:p-6 shadow-lg overflow-hidden group-hover:border-white/30 transition-[border-color] duration-200"
                     >
                       <div className="flex items-center justify-between pb-3 mb-3 border-b border-white/10">
-                        <span className="text-xs font-mono text-neutral-400">
+                        <span className="text-xs text-neutral-400">
                           {p.title.toLowerCase().replace(/\s+/g, '-')}.service
                         </span>
                         <Icon className="w-4 h-4 text-neutral-400" />
@@ -218,10 +215,10 @@ export default function Projects() {
                           <div className="text-emerald-400 font-semibold">$ fastapi run main.py --workers 4</div>
                           <div className="text-neutral-400">Worker pool active on port 8000.</div>
                           <div className="text-neutral-200">
-                            POST /api/v1/tickets/route — 200 OK
+                            POST /api/v1/tickets/route - 200 OK
                           </div>
                           <div className="p-3 rounded-lg bg-white/[0.04] border border-white/10 text-xs text-neutral-200 font-mono">
-                            department: &quot;DevOps &amp; Infrastructure&quot; · priority: &quot;High&quot; · routed: true
+                            department: &quot;DevOps &amp; Infrastructure&quot; , priority: &quot;High&quot; , routed: true
                           </div>
                           <div className="text-neutral-400 flex items-center gap-2">
                             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -230,7 +227,7 @@ export default function Projects() {
                         </div>
                       ) : (
                         <div className="space-y-4 py-2 min-h-[190px]">
-                          <div className="flex items-center justify-between text-xs font-mono text-neutral-300 border-b border-white/5 pb-2">
+                          <div className="flex items-center justify-between text-xs text-neutral-300 border-b border-white/5 pb-2">
                             <span>RESTAURANT ADMIN DASHBOARD</span>
                             <span className="text-emerald-400 flex items-center gap-1.5">
                               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
@@ -239,19 +236,19 @@ export default function Projects() {
                           </div>
                           <div className="grid grid-cols-3 gap-2 sm:gap-2.5">
                             <div className="p-2 sm:p-2.5 rounded-lg border border-white/10 bg-white/[0.02] min-w-0">
-                              <span className="text-[10px] font-mono text-neutral-400 block truncate">Cart Engine</span>
+                              <span className="text-[10px] text-neutral-400 block truncate">Cart Engine</span>
                               <p className="text-xs font-semibold text-white mt-1">Real-time</p>
                             </div>
                             <div className="p-2 sm:p-2.5 rounded-lg border border-white/10 bg-white/[0.02] min-w-0">
-                              <span className="text-[10px] font-mono text-neutral-400 block truncate">Menu Filter</span>
+                              <span className="text-[10px] text-neutral-400 block truncate">Menu Filter</span>
                               <p className="text-xs font-semibold text-emerald-400 mt-1">Dynamic</p>
                             </div>
                             <div className="p-2 sm:p-2.5 rounded-lg border border-white/10 bg-white/[0.02] min-w-0">
-                              <span className="text-[10px] font-mono text-neutral-400 block truncate">Storage</span>
+                              <span className="text-[10px] text-neutral-400 block truncate">Storage</span>
                               <p className="text-xs font-semibold text-neutral-200 mt-1">LocalStorage</p>
                             </div>
                           </div>
-                          <div className="p-2.5 rounded-lg border border-white/10 bg-white/[0.01] text-xs font-mono text-neutral-400 flex items-center justify-between">
+                          <div className="p-2.5 rounded-lg border border-white/10 bg-white/[0.01] text-xs text-neutral-400 flex items-center justify-between">
                             <span>Stack: Vanilla JS + CSS3</span>
                             <span className="text-white">quickbite-online</span>
                           </div>

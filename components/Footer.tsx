@@ -8,14 +8,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="py-12 px-6 md:px-12 lg:px-24 bg-[#080808] border-t border-white/5 text-xs font-mono text-neutral-400">
+    <footer className="py-12 px-6 md:px-12 lg:px-24 bg-[var(--color-paper-3)] border-t border-white/5 text-xs text-neutral-400">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-1">
           <p className="text-white font-medium tracking-tight">
-            Rahul Kumar — BCA Student &amp; Full-Stack Developer
+            Rahul Kumar - BCA Student &amp; Full-Stack Developer
           </p>
           <p className="text-neutral-500">
-            Chandigarh, India · Saraswati Group of Colleges (5th Sem) · Built with Next.js &amp; Tailwind
+            Chandigarh, India , Saraswati Group of Colleges (5th Sem) , Built with Next.js &amp; Tailwind
           </p>
         </div>
 
@@ -26,7 +26,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             whileHover={{ y: -2, color: '#ffffff' }}
             whileTap={{ scale: 0.95 }}
-            className="text-neutral-400 transition-colors uppercase tracking-wider"
+            className="text-neutral-400 transition-colors  tracking-normal"
           >
             GitHub
           </motion.a>
@@ -36,7 +36,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             whileHover={{ y: -2, color: '#ffffff' }}
             whileTap={{ scale: 0.95 }}
-            className="text-neutral-400 transition-colors uppercase tracking-wider"
+            className="text-neutral-400 transition-colors  tracking-normal"
           >
             LinkedIn
           </motion.a>
@@ -45,7 +45,7 @@ export default function Footer() {
             onClick={scrollToTop}
             whileHover={{ scale: 1.08, y: -2 }}
             whileTap={{ scale: 0.94 }}
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-neutral-300 hover:text-white hover:border-white/30 transition-colors ml-auto md:ml-0"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/10 bg-white/[0.02] text-neutral-300 hover:text-white hover:border-white/30 transition-colors ml-auto md:ml-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
             aria-label="Scroll to top"
           >
             <span>Top</span>

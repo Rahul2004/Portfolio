@@ -100,7 +100,7 @@ export default function Navigation() {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color,padding] duration-200 ease-out gpu-accelerated ${
           scrolled
-            ? 'bg-[#0a0a0a]/90 backdrop-blur-md border-b border-white/10 py-3.5 shadow-md'
+            ? 'bg-[var(--color-paper)]/90 backdrop-blur-md border-b border-white/10 py-3.5 shadow-md'
             : 'bg-transparent border-b border-white/5 py-5'
         }`}
       >
@@ -110,32 +110,20 @@ export default function Navigation() {
             whileHover={{ scale: 1.02 }}
             className="group flex items-center gap-3"
           >
-            <div className="w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-xs font-mono font-bold tracking-wider group-hover:border-white group-hover:bg-white/10 transition-colors cursor-pointer">
+            <div className="w-8 h-8 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-xs font-bold tracking-normal group-hover:border-white group-hover:bg-white/10 transition-colors cursor-pointer">
               RK
             </div>
             <div className="flex flex-col" suppressHydrationWarning>
               <span className="text-sm font-semibold tracking-tight text-white group-hover:text-neutral-300 transition-colors" suppressHydrationWarning>
                 Rahul Kumar
               </span>
-              <span className="text-xs font-mono text-neutral-400" suppressHydrationWarning>
-                BCA Student · Developer
+              <span className="text-xs text-neutral-400" suppressHydrationWarning>
+                BCA Student , Developer
               </span>
             </div>
           </motion.a>
 
-          <div className="hidden lg:flex items-center gap-5 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] text-xs font-mono cursor-default transition-colors">
-            <div className="flex items-center gap-2">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span className="text-neutral-300 tracking-wider text-xs">Available for work</span>
-            </div>
-            <span className="text-neutral-600">·</span>
-            <div className="text-neutral-400 text-xs tracking-wider">
-              <span>Chandigarh, IN</span> <ClockDisplay />
-            </div>
-          </div>
+          
 
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex items-center gap-6" aria-label="Main Navigation">
@@ -145,7 +133,7 @@ export default function Navigation() {
                   <a
                     key={link.label}
                     href={link.href}
-                    className={`relative py-1 text-xs font-mono uppercase tracking-[0.18em] transition-colors ${
+                    className={`relative py-1 text-xs tracking-normal transition-colors ${
                       isActive ? 'text-white font-semibold' : 'text-neutral-400 hover:text-white'
                     }`}
                   >
@@ -164,7 +152,7 @@ export default function Navigation() {
               href="#contact"
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.96 }}
-              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 bg-white text-black text-xs font-mono font-medium uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-white/20 bg-white text-black text-xs font-medium  tracking-normal hover:bg-neutral-200 transition-colors shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
             >
               <span>Connect</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -188,10 +176,10 @@ export default function Navigation() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-[#0a0a0a]/95 backdrop-blur-lg pt-24 px-6 md:hidden flex flex-col justify-between pb-12 border-b border-white/10 gpu-accelerated"
+            className="fixed inset-0 z-40 bg-[var(--color-paper)]/95 backdrop-blur-lg pt-24 px-6 md:hidden flex flex-col justify-between pb-12 border-b border-white/10 gpu-accelerated"
           >
             <div className="flex flex-col gap-6">
-              <span className="text-xs font-mono uppercase tracking-[0.25em] text-neutral-400">
+              <span className="text-xs tracking-normal text-neutral-400">
                 Menu
               </span>
               <div className="flex flex-col gap-5">
@@ -215,15 +203,14 @@ export default function Navigation() {
             </div>
 
             <div className="flex flex-col gap-4 pt-6 border-t border-white/10">
-              <div className="flex items-center gap-2 text-xs font-mono text-neutral-400">
-                <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                <span>Available for opportunities &amp; roles</span>
+              <div className="flex items-center gap-2 text-xs text-neutral-400">
+                
               </div>
               <motion.a
                 href="#contact"
                 whileTap={{ scale: 0.98 }}
                 onClick={() => setMobileOpen(false)}
-                className="w-full py-3.5 rounded-full bg-white text-black text-center text-xs font-mono font-bold uppercase tracking-wider"
+                className="w-full py-3.5 rounded-full bg-white text-black text-center text-xs font-bold  tracking-normal"
               >
                 Let&apos;s Connect
               </motion.a>

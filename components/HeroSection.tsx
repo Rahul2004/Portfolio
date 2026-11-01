@@ -45,37 +45,13 @@ export default function Hero() {
       {/* Pure compositor glow: 0 JS animation loop overhead */}
       <div
         aria-hidden="true"
-        className="hidden md:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[540px] h-[280px] rounded-full blur-2xl pointer-events-none -z-10 gpu-accelerated animate-subtle-glow"
+        className="hidden md:block absolute top-1/3 left-1/2 -translate-x-1/2 w-[540px] h-[280px] rounded-full blur-2xl pointer-events-none -z-10 gpu-accelerated motion-safe:animate-subtle-glow"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%)',
         }}
       />
 
-      <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="flex items-center gap-3 text-xs font-mono tracking-widest text-neutral-400 uppercase"
-        >
-          <span className="text-white font-bold">00</span>
-          <span className="text-neutral-600">·</span>
-          <span>BCA Student · 5th Semester</span>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.08 }}
-          className="flex items-center gap-2 text-xs font-mono text-neutral-400"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-          </span>
-          <span>Chandigarh, India · Open for Roles &amp; Internships</span>
-        </motion.div>
-      </div>
+      
 
       <motion.div
         variants={containerVariants}
@@ -88,7 +64,7 @@ export default function Hero() {
             <DynamicWord
               variants={titleWordVariants}
               hoverColor="#ffffff"
-              className="text-[clamp(2.9rem,11.2vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-white uppercase will-change-transform"
+              className="text-[clamp(2.9rem,11.2vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] text-white  will-change-transform"
             >
               Rahul
             </DynamicWord>
@@ -99,7 +75,7 @@ export default function Hero() {
               variants={titleWordVariants}
               baseColor="#737373"
               hoverColor="#ffffff"
-              className="text-[clamp(2.9rem,11.2vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88] uppercase will-change-transform"
+              className="text-[clamp(2.9rem,11.2vw,9.5rem)] font-extrabold tracking-[-0.04em] leading-[0.88]  will-change-transform"
             >
               Kumar.
             </DynamicWord>
@@ -108,7 +84,7 @@ export default function Hero() {
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 mt-10 md:mt-14 pt-8 border-t border-white/10">
           <motion.div variants={itemVariants} className="md:col-span-5">
-            <p className="text-xs font-mono text-neutral-400 mb-2">
+            <p className="text-xs text-neutral-400 mb-2">
               BCA Student &amp; Developer
             </p>
             <h2 className="text-xl md:text-2xl font-light text-neutral-100 tracking-tight leading-snug">
@@ -130,7 +106,7 @@ export default function Hero() {
                   href="#projects"
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.96 }}
-                  className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm"
+                  className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white text-black text-xs font-bold tracking-normal hover:bg-neutral-200 transition-colors shadow-sm"
                 >
                   <span>View Projects</span>
                   <ArrowDownRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
@@ -142,7 +118,7 @@ export default function Hero() {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.04, y: -2 }}
                   whileTap={{ scale: 0.96 }}
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-white/20 bg-white/[0.04] text-white text-xs font-mono font-semibold uppercase tracking-wider hover:bg-white/10 hover:border-white/40 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-3 rounded-full border border-white/20 bg-white/[0.04] text-white text-xs font-semibold tracking-normal hover:bg-white/10 hover:border-white/40 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                 >
                   <Download className="w-3.5 h-3.5" />
                   <span>Resume</span>
@@ -152,7 +128,7 @@ export default function Hero() {
                   href="#contact"
                   whileHover={{ x: 2 }}
                   whileTap={{ scale: 0.96 }}
-                  className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-2 text-xs tracking-normal text-neutral-400 hover:text-white transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                 >
                   <span>Contact</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
@@ -167,7 +143,7 @@ export default function Hero() {
                   aria-label="GitHub profile"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 hover:text-white hover:border-white/30 text-xs font-mono transition-colors"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 hover:text-white hover:border-white/30 text-xs transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                 >
                   <GithubIcon className="w-3.5 h-3.5" />
                   <span>GitHub</span>
@@ -179,7 +155,7 @@ export default function Hero() {
                   aria-label="LinkedIn profile"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 hover:text-white hover:border-white/30 text-xs font-mono transition-colors"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 hover:text-white hover:border-white/30 text-xs transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-[var(--color-focus)] focus-visible:outline-offset-2 active:opacity-80"
                 >
                   <LinkedinIcon className="w-3.5 h-3.5" />
                   <span>LinkedIn</span>
@@ -194,19 +170,19 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="max-w-7xl w-full mx-auto pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-neutral-400 border-t border-white/5"
+        className="max-w-7xl w-full mx-auto pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-400 border-t border-white/5"
       >
         <div className="hidden md:flex items-center gap-3">
           <span className="text-white font-semibold">Focus Areas</span>
-          <span className="text-neutral-600">·</span>
-          <span>Full-Stack Web Development · React &amp; Next.js · Node.js · REST APIs &amp; Databases</span>
+          <span className="text-neutral-600">, </span>
+          <span>Full-Stack Web Development , React &amp; Next.js , Node.js , REST APIs &amp; Databases</span>
         </div>
 
         <a
           href="#about"
           className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors mx-auto md:mx-0 py-1"
         >
-          <span className="uppercase tracking-wider">Scroll to explore</span>
+          <span className="tracking-normal">Scroll to explore</span>
           <span className="animate-gentle-bounce inline-block">
             <ArrowUpRight className="w-3.5 h-3.5 rotate-90 text-white" />
           </span>

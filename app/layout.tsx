@@ -1,16 +1,17 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter } from 'next/font/google';
+import { Host_Grotesk } from 'next/font/google';
 import './globals.css';
 
-const inter = Inter({
+const hostGrotesk = Host_Grotesk({
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-sans',
   display: 'swap',
   preload: true,
 });
 
 export const viewport: Viewport = {
-  themeColor: '#0a0a0a',
+  themeColor: '#17191d',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -24,8 +25,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} font-sans dark`}>
-      <body className="bg-[#0a0a0a] text-[#f4f4f5] antialiased selection:bg-white selection:text-black w-full max-w-full overflow-x-hidden">
+    <html lang="en" className={`${hostGrotesk.variable} font-sans dark`}>
+      <body className="antialiased selection:bg-amber-400/20 selection:text-white w-full max-w-full overflow-x-hidden">
         {children}
       </body>
     </html>

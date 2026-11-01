@@ -13,7 +13,13 @@ import Footer from '@/components/Footer';
 
 export default function Page() {
   return (
-    <main className="relative min-h-screen bg-[#0a0a0a] text-[#f4f4f5] overflow-x-hidden w-full max-w-full selection:bg-white selection:text-black">
+    <main
+      className="relative min-h-screen overflow-x-hidden w-full max-w-full"
+      style={{
+        backgroundColor: 'var(--color-paper)',
+        color: 'var(--color-ink)',
+      }}
+    >
       <BackgroundEffect />
       <ScrollProgress />
       <Navigation />

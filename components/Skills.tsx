@@ -64,16 +64,13 @@ export default function Skills() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-16 pb-8 border-b border-white/10"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-neutral-400 uppercase mb-3">
-              <span className="text-white font-bold">03</span>
-              <span>· Technical Capabilities</span>
-            </div>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white uppercase flex items-center gap-3 flex-wrap">
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white  flex items-center gap-3 flex-wrap">
               <DynamicWord hoverColor="#ffffff">Skills</DynamicWord>{' '}
               <DynamicWord hoverColor="#ffffff">Matrix.</DynamicWord>
             </h2>
           </div>
-          <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest">
+          <span className="text-xs text-neutral-400  tracking-normal">
             Categorized Stack
           </span>
         </motion.div>
@@ -90,20 +87,18 @@ export default function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.45, delay: idx * 0.05 }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 hover:bg-white/[0.04] hover:border-white/30 transition-[border-color,background-color] duration-200 flex flex-col justify-between h-full shadow-[0_10px_35px_rgba(0,0,0,0.3)]"
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 sm:p-7 hover:bg-white/[0.04] hover:border-white/30 transition-[border-color,background-color] duration-200 flex flex-col justify-between h-full shadow-lg"
               >
                 <div>
                   <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
-                    <span className="text-xs font-mono text-neutral-400 font-bold">
-                      {cat.index}
-                    </span>
+                    
                     <Icon className="w-4 h-4 text-neutral-400 group-hover:text-white transition-colors" />
                   </div>
 
                   <h3 className="text-lg font-bold tracking-tight text-white mb-2">
                     {cat.title}
                   </h3>
-                  <p className="text-xs font-mono text-neutral-400 mb-6 leading-relaxed">
+                  <p className="text-xs text-neutral-400 mb-6 leading-relaxed">
                     {cat.subtitle}
                   </p>
                 </div>
@@ -113,7 +108,7 @@ export default function Skills() {
                   {cat.items.map((item) => (
                     <span
                       key={item}
-                      className="px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs font-mono text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-[border-color,background-color,color] duration-150 cursor-default"
+                      className="px-2.5 py-1 rounded-full border border-white/10 bg-white/[0.02] text-xs text-neutral-300 hover:border-white/40 hover:bg-white/10 hover:text-white transition-[border-color,background-color,color] duration-150 cursor-default"
                     >
                       {item}
                     </span>

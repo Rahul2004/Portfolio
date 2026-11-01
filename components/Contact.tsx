@@ -69,11 +69,8 @@ export default function Contact() {
           className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-20 pb-8 border-b border-white/10"
         >
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono tracking-widest text-neutral-400 uppercase mb-3">
-              <span className="text-white font-bold">04</span>
-              <span>· Get In Touch</span>
-            </div>
-            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tight text-white uppercase leading-[0.92]">
+            
+            <h2 className="text-4xl md:text-7xl font-extrabold tracking-tight text-white  leading-[0.92]">
               <div className="flex items-center gap-3 flex-wrap">
                 <DynamicWord hoverColor="#ffffff">Let&apos;s</DynamicWord>{' '}
                 <DynamicWord hoverColor="#ffffff">Build</DynamicWord>
@@ -85,10 +82,7 @@ export default function Contact() {
               </div>
             </h2>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono text-emerald-400">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>Available for opportunities</span>
-          </div>
+          
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
@@ -100,7 +94,7 @@ export default function Contact() {
             className="lg:col-span-5 space-y-8"
           >
             <div className="space-y-4">
-              <p className="text-xs font-mono uppercase tracking-[0.2em] text-neutral-400">
+              <p className="text-xs tracking-normal text-neutral-400">
                 Direct Inquiries
               </p>
               <p className="text-lg md:text-xl text-neutral-300 font-light leading-relaxed">
@@ -109,11 +103,11 @@ export default function Contact() {
             </div>
 
             <div className="space-y-3">
-              <span className="text-xs font-mono text-neutral-400 uppercase tracking-widest block">
+              <span className="text-xs text-neutral-400  tracking-normal block">
                 Communication Channels
               </span>
               <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300">
+                <div className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm text-neutral-300">
                   <div className="flex items-center gap-2.5 sm:gap-3 truncate pr-2 min-w-0">
                     <Mail className="w-4 h-4 text-neutral-400 shrink-0" />
                     <span className="truncate text-white text-xs sm:text-sm">{contactEmail}</span>
@@ -123,7 +117,7 @@ export default function Contact() {
                     onClick={handleCopyEmail}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-300 hover:text-white hover:border-white/30 transition-colors shrink-0"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-neutral-300 hover:text-white hover:border-white/30 transition-colors shrink-0"
                   >
                     {copied ? (
                       <>
@@ -145,7 +139,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ x: 3, borderColor: 'rgba(255,255,255,0.3)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300 group"
+                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm text-neutral-300 group"
                 >
                   <div className="flex items-center gap-3">
                     <GithubIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
@@ -160,7 +154,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   whileHover={{ x: 3, borderColor: 'rgba(255,255,255,0.3)' }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm font-mono text-neutral-300 group"
+                  className="flex items-center justify-between p-4 rounded-2xl border border-white/10 bg-white/[0.01] hover:bg-white/[0.04] transition-[background-color,border-color] text-sm text-neutral-300 group"
                 >
                   <div className="flex items-center gap-3">
                     <LinkedinIcon className="w-4 h-4 text-neutral-400 group-hover:text-white" />
@@ -190,14 +184,14 @@ export default function Contact() {
                     <Check className="w-6 h-6" />
                   </div>
                   <h3 className="text-2xl font-bold text-white">Message Dispatched.</h3>
-                  <p className="text-sm font-mono text-neutral-400 max-w-sm mx-auto">
+                  <p className="text-sm text-neutral-400 max-w-sm mx-auto">
                     Thank you for reaching out. I usually reply within 24 business hours.
                   </p>
                   <motion.button
                     onClick={() => setSubmitted(false)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-6 px-6 py-2.5 rounded-full border border-white/20 text-xs font-mono uppercase tracking-wider text-neutral-300 hover:text-white hover:border-white/40 transition-colors"
+                    className="mt-6 px-6 py-2.5 rounded-full border border-white/20 text-xs tracking-normal text-neutral-300 hover:text-white hover:border-white/40 transition-colors"
                   >
                     Send another message
                   </motion.button>
@@ -205,7 +199,7 @@ export default function Contact() {
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-8">
                   {error && (
-                    <div className="p-4 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400 text-xs font-mono">
+                    <div className="p-4 rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400 text-xs">
                       {error}
                     </div>
                   )}
@@ -213,7 +207,7 @@ export default function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="name"
-                      className="block text-xs font-mono uppercase tracking-[0.2em] text-neutral-400"
+                      className="block text-xs tracking-normal text-neutral-400"
                     >
                       Your Name
                     </label>
@@ -231,7 +225,7 @@ export default function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="block text-xs font-mono uppercase tracking-[0.2em] text-neutral-400"
+                      className="block text-xs tracking-normal text-neutral-400"
                     >
                       Email Address
                     </label>
@@ -249,7 +243,7 @@ export default function Contact() {
                   <div className="space-y-2">
                     <label
                       htmlFor="message"
-                      className="block text-xs font-mono uppercase tracking-[0.2em] text-neutral-400"
+                      className="block text-xs tracking-normal text-neutral-400"
                     >
                       Message
                     </label>
@@ -269,7 +263,7 @@ export default function Contact() {
                     disabled={submitting}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-white text-black text-xs font-mono font-bold uppercase tracking-wider hover:bg-neutral-200 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-full bg-white text-black text-xs font-bold  tracking-normal hover:bg-neutral-200 transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Send className="w-3.5 h-3.5" />
                     <span>{submitting ? 'Transmitting...' : 'Dispatch Message'}</span>
